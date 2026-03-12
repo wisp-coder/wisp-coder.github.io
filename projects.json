@@ -2,7 +2,8 @@
   "categories": {
     "bots": "Боты",
     "drainers": "Дрейнеры",
-    "lends": "Лендинги"
+    "lends": "Лендинги",
+    "software": "Софты"
   },
   "projects": [
     {
@@ -44,6 +45,33 @@
         { "src": "img/cases/drainer-nft-panel/notifications.png", "alt": "Уведомления" },
         { "src": "img/cases/drainer-nft-panel/users.png", "alt": "Пользователи" },
         { "src": "img/cases/drainer-nft-panel/kassa.png", "alt": "Касса" }
+      ]
+    },
+    {
+      "id": "autopost-panel",
+      "title": "Панель автопостинга",
+      "category": "software",
+      "summary": "Веб-панель для управления Telegram-аккаунтами, автопостингом и активностью. Написана с нуля, запускается локально или на сервере.",
+      "stack": ["Python", "FastAPI", "Telethon", "Jinja2"],
+      "description": [
+        "Веб-панель для управления Telegram-аккаунтами, автопостингом и активностью. Написана с нуля, запускается локально или на сервере."
+      ],
+      "solution": [
+        "Мультиаккаунт - любое количество аккаунтов через сессии или SMS-авторизацию. Каждый аккаунт работает независимо со своими настройками, прокси и шаблоном",
+        "Автопостинг — разовая отправка или цикличный луп по списку чатов. Настраивается задержка между отправками и минимальный порог участников в чате",
+        "Спинтакс — автоматическая рандомизация текста по правилам, чтобы каждое сообщение выглядело уникально.",
+        "Джойнер — автоматический вступ в чаты из базы. Умеет присоединяться рандомно, фильтрует по минимальному количеству участников",
+        "Активность — имитация живого аккаунта: бот читает чаты по расписанию с настраиваемыми интервалами и количеством чатов за сессию"
+      ],
+      "images": [
+        { "src": "img/cases/autopost-panel/dashboard.png", "alt": "Дашборд" },
+        { "src": "img/cases/autopost-panel/accounts.png", "alt": "Аккаунты" },
+        { "src": "img/cases/autopost-panel/templates.png", "alt": "Шаблоны" },
+        { "src": "img/cases/autopost-panel/chats.png", "alt": "Чаты" },
+        { "src": "img/cases/autopost-panel/folders.png", "alt": "Папки" },
+        { "src": "img/cases/autopost-panel/proxies.png", "alt": "Прокси" },
+        { "src": "img/cases/autopost-panel/spintax.png", "alt": "Спинтакс" },
+        
       ]
     }
   ]
