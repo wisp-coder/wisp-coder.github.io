@@ -70,8 +70,7 @@
         { "src": "img/cases/autopost-panel/chats.png", "alt": "Чаты" },
         { "src": "img/cases/autopost-panel/folders.png", "alt": "Папки" },
         { "src": "img/cases/autopost-panel/proxies.png", "alt": "Прокси" },
-        { "src": "img/cases/autopost-panel/spintax.png", "alt": "Спинтакс" },
-        
+        { "src": "img/cases/autopost-panel/spintax.png", "alt": "Спинтакс" }
       ]
     }
   ]
