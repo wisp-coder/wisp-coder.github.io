@@ -31,7 +31,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: auto; }
 
     body {
       font-family: var(--font);
@@ -432,11 +432,29 @@
       .modal-body { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
+      .nav { height: auto; padding: 12px 0; flex-wrap: wrap; gap: 10px; }
       .navlinks { display: none; }
+      .brand { flex: 1; }
+      .nav-tg { padding: 8px 12px; font-size: 13px; }
+      .nav-tg span { display: none; }
+      .hero { padding: 40px 0 32px; }
+      .hero-main { padding: 20px; }
+      .hero-side .mini-card { padding: 16px; }
       .grid { grid-template-columns: 1fr; }
       .stats { grid-template-columns: 1fr; }
       .contact-box { flex-direction: column; align-items: flex-start; }
+      .contact-tg { width: 100%; justify-content: center; }
       .disclaimer { text-align: left; }
+      .toolbar { padding: 10px; gap: 8px; }
+      .section-head h2 { font-size: 22px; }
+      .foot { flex-direction: column; gap: 8px; }
+      .disclaimer { max-width: 100%; }
+      h1 { font-size: 32px; }
+      .modal-body { padding: 14px; gap: 12px; }
+      .kv-block { padding: 12px; }
+    }
+    @media (max-width: 380px) {
+      .nav-tg { display: none; }
     }
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
   </style>
@@ -601,6 +619,8 @@
 </dialog>
 
 <script>
+  if (location.hash) history.replaceState(null, "", location.pathname);
+
   const $ = (s, r=document) => r.querySelector(s);
   const $$ = (s, r=document) => [...r.querySelectorAll(s)];
   const esc = s => String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
