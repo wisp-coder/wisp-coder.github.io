@@ -1148,7 +1148,7 @@
     const allBtn=`<button class="chip" type="button" data-cat="all" aria-pressed="${state.cat==="all"}">Все <span class="chip-count">${total}</span></button>`;
     const btns=cats.map(c=>`<button class="chip" type="button" data-cat="${esc(c)}" aria-pressed="${state.cat===c}">${esc(label(c))} <span class="chip-count">${counts[c]||0}</span></button>`).join("");
     $("#filters").innerHTML=allBtn+btns;
-    $$(".chip","#filters").forEach(b=>{
+    $$(".chip").forEach(b=>{
       b.addEventListener("click",()=>{
         $$(".chip").forEach(x=>x.setAttribute("aria-pressed","false"));
         b.setAttribute("aria-pressed","true");
