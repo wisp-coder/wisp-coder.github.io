@@ -3,802 +3,1073 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="hush!k dev" />
-  <meta name="theme-color" content="#0b0f19" />
-  <meta property="og:title" content="hush!k dev" />
-  <meta property="og:description" content="portfolio" />
-  <meta property="og:type" content="website" />
-  <title>hush!k dev</title>
-
-  <!-- favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="img/logo.png" />
+  <meta name="description" content="wisp — full-stack developer" />
+  <meta name="theme-color" content="#060612" />
+  <title>wisp dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#0b0f19;
-      --panel:#10182a;
-      --panel2:#0f1627;
-      --text:#eaf0ff;
-      --muted:#a8b3d6;
-      --line:rgba(255,255,255,.10);
-      --accent:#7c5cff;
-      --accent2:#2dd4bf;
-
-      --radius:15px;
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
-      --shadow2: 0 10px 30px rgba(0,0,0,.25);
-
-      --max: 1120px;
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+    :root {
+      --bg: #060612;
+      --bg2: #0d0b1e;
+      --panel: #0f0d22;
+      --panel2: #13112a;
+      --border: rgba(124,92,255,.18);
+      --border2: rgba(124,92,255,.30);
+      --text: #eef0ff;
+      --muted: #8b8fb3;
+      --dim: #4a4d6e;
+      --accent: #7c3aed;
+      --accent2: #06b6d4;
+      --grad: linear-gradient(135deg, #7c3aed, #06b6d4);
+      --grad2: linear-gradient(135deg, #5b21b6, #0891b2);
+      --font: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'JetBrains Mono', 'SF Mono', monospace;
+      --radius: 16px;
+      --max: 1140px;
     }
 
-    [data-theme="light"]{
-      --bg:#f6f7fb;
-      --panel:#ffffff;
-      --panel2:#ffffff;
-      --text:#0b1222;
-      --muted:#4a587a;
-      --line:rgba(0,0,0,.10);
-      --shadow: 0 20px 60px rgba(0,0,0,.10);
-      --shadow2: 0 10px 30px rgba(0,0,0,.08);
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-
-    body{
-      margin:0;
-      font-family:var(--font);
-      color:var(--text);
-      line-height:1.5;
-      letter-spacing:.2px;
+    body {
+      font-family: var(--font);
       background: var(--bg);
-      position: relative;
-      overflow-x:hidden;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* фон */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:-2px;
-      pointer-events:none;
-      z-index:-2;
+    /* BACKGROUND */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
       background:
-        radial-gradient(900px 620px at 10% -10%, rgba(124,92,255,.22), transparent 60%),
-        radial-gradient(900px 620px at 90% 0%, rgba(45,212,191,.14), transparent 55%),
-        radial-gradient(1000px 700px at 50% 120%, rgba(124,92,255,.12), transparent 62%),
-        radial-gradient(900px 600px at 50% 30%, rgba(255,255,255,.05), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.03), transparent 35%),
+        radial-gradient(ellipse 900px 600px at 0% 0%, rgba(124,92,255,.20) 0%, transparent 60%),
+        radial-gradient(ellipse 700px 500px at 100% 10%, rgba(6,182,212,.12) 0%, transparent 55%),
+        radial-gradient(ellipse 800px 600px at 50% 100%, rgba(91,33,182,.15) 0%, transparent 60%),
         var(--bg);
-      filter: saturate(1.05);
-    }
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:-1;
-      background:
-        radial-gradient(1200px 800px at 50% 15%, rgba(0,0,0,.20), transparent 60%),
-        radial-gradient(1200px 900px at 50% 110%, rgba(0,0,0,.35), transparent 55%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.10'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
-      opacity:.55;
     }
 
-    [data-theme="light"] body::before{
-      background:
-        radial-gradient(900px 620px at 10% -10%, rgba(124,92,255,.14), transparent 62%),
-        radial-gradient(900px 620px at 90% 0%, rgba(45,212,191,.12), transparent 55%),
-        radial-gradient(1000px 700px at 50% 120%, rgba(124,92,255,.10), transparent 62%),
-        linear-gradient(180deg, rgba(0,0,0,.03), transparent 35%),
-        var(--bg);
-      filter:saturate(1.02);
-    }
-    [data-theme="light"] body::after{
-      mix-blend-mode: multiply;
-      opacity:.22;
-    }
-
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
-
-    .skip{
-      position:absolute; left:-999px; top:10px;
-      background:var(--panel); border:1px solid var(--line);
-      padding:10px 12px; border-radius:12px; z-index:9999;
-    }
-    .skip:focus{left:20px}
-
-    header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter:saturate(1.1) blur(14px);
-      background:rgba(10,14,26,.55);
-      border-bottom:1px solid var(--line);
-    }
-    [data-theme="light"] header{ background:rgba(246,247,251,.72); }
-
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      height:68px;
-    }
-    .brand{
-      display:flex; gap:12px; align-items:center; font-weight:700;
-      letter-spacing:.4px;
+    /* GRID PATTERN */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(124,92,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,92,255,.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
     }
 
-    /* ЛОГО */
-    .logoImg{
-      width:34px; height:34px;
-      border-radius:12px;
-      display:block;
-      border:1px solid var(--line);
-      box-shadow: 0 10px 30px rgba(124,92,255,.20);
-      object-fit:cover;
-      background: rgba(255,255,255,.06);
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px) saturate(1.2);
+      background: rgba(6,6,18,.75);
+      border-bottom: 1px solid var(--border);
     }
 
-    .navlinks{display:flex; gap:18px; align-items:center}
-    .navlinks a{
-      padding:10px 12px; border-radius:12px;
-      color:var(--muted);
-    }
-    .navlinks a:hover{background:rgba(255,255,255,.06); color:var(--text)}
-    [data-theme="light"] .navlinks a:hover{background:rgba(0,0,0,.05)}
-
-    .navactions{display:flex; gap:10px; align-items:center}
-    .btn{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.06);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:14px;
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease;
-      display:inline-flex; gap:10px; align-items:center;
-    }
-    [data-theme="light"] .btn{background:rgba(0,0,0,.04)}
-    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.10)}
-    [data-theme="light"] .btn:hover{background:rgba(0,0,0,.06)}
-    .btn.primary{
-      border:0;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color:#091023;
-      font-weight:700;
-    }
-    .btn.primary:hover{filter:brightness(1.05)}
-    .pill{
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-      color:var(--muted);
-      font-size:12px;
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 20px;
     }
 
-    .hero{padding:64px 0 28px}
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      align-items:stretch;
-    }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow2);
-    }
-    [data-theme="light"] .card{background:linear-gradient(180deg,#fff,#fff)}
-    .heroMain{padding:24px}
-    .kicker{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      margin-bottom:10px;
-    }
-    h1{
-      margin:0 0 10px;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height:1.08;
-      letter-spacing:-.8px;
-    }
-    .lead{
-      margin:0 0 16px;
-      color:var(--muted);
-      font-size:16px;
-      max-width:60ch;
-    }
-    .heroStats{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:16px;
-    }
-    .stat{
-      padding:14px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-    }
-    [data-theme="light"] .stat{background:rgba(0,0,0,.03)}
-    .stat b{display:block; font-size:18px}
-    .stat span{color:var(--muted); font-size:12px}
-    .heroSide{padding:18px; display:flex; flex-direction:column; gap:12px}
-    .mini{
-      padding:14px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-    }
-    [data-theme="light"] .mini{background:rgba(0,0,0,.03)}
-    .mini h3{margin:0 0 8px; font-size:14px}
-    .mini p{margin:0; color:var(--muted); font-size:13px}
-
-    section{padding:44px 0}
-    .sectionHead{
-      display:flex; justify-content:space-between; align-items:flex-end;
-      gap:14px; margin-bottom:16px; flex-wrap:wrap;
-    }
-    .sectionHead h2{margin:0; font-size:20px; letter-spacing:-.2px}
-    .sectionHead p{margin:0; color:var(--muted); max-width:70ch}
-
-    .toolbar{
-      display:flex; gap:12px; flex-wrap:wrap;
-      align-items:center;
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:14px;
-    }
-    [data-theme="light"] .toolbar{background:rgba(0,0,0,.03)}
-    .search{
-      flex:1;
-      min-width:220px;
-      display:flex; align-items:center; gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:rgba(255,255,255,.05);
-    }
-    [data-theme="light"] .search{background:rgba(0,0,0,.03)}
-    .search input{
-      width:100%;
-      border:0; outline:0;
-      background:transparent;
-      color:var(--text);
-      font-size:14px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -.2px;
     }
 
-    .filters{display:flex; gap:8px; flex-wrap:wrap}
-    .chipBtn{
-      padding:9px 11px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-      color:var(--muted);
-      cursor:pointer;
-      font-size:13px;
-      transition: background .12s ease, transform .12s ease, border-color .12s ease, opacity .12s ease;
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-    }
-    [data-theme="light"] .chipBtn{background:rgba(0,0,0,.03)}
-    .chipBtn:hover{transform: translateY(-1px)}
-    .chipBtn[aria-pressed="true"]{
-      background:rgba(124,92,255,.20);
-      color:var(--text);
-      border-color: rgba(124,92,255,.45);
-    }
-    .chipCount{
-      font-size:12px;
-      padding:3px 8px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.06);
-      color:var(--muted);
-    }
-    [data-theme="light"] .chipCount{background:rgba(0,0,0,.04)}
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-      margin-top:16px;
-    }
-    .proj{
-      padding:16px;
-      border-radius:var(--radius);
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      box-shadow:var(--shadow2);
-      display:flex; flex-direction:column; gap:10px;
-      min-height: 200px;
-      position:relative;
-      overflow:hidden;
-    }
-    [data-theme="light"] .proj{background:#fff}
-    .proj::before{
-      content:"";
-      position:absolute; inset:-80px -80px auto auto;
-      width:160px; height:160px; border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.22), transparent 60%);
-      pointer-events:none;
-    }
-    .projTop{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
-    .proj h3{margin:0; font-size:16px; letter-spacing:-.2px}
-    .proj p{margin:0; color:var(--muted); font-size:13px}
-    .meta{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px}
-    .tag{
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-      color:var(--muted);
-    }
-    [data-theme="light"] .tag{background:rgba(0,0,0,.03)}
-    .projBottom{
-      margin-top:auto;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-    }
-    .links{display:flex; gap:8px; flex-wrap:wrap}
-    .link{
-      padding:8px 10px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-      color:var(--text);
-      font-size:13px;
-      cursor:pointer;
-      display:inline-flex; gap:8px; align-items:center;
-      transition: transform .12s ease, background .12s ease;
-    }
-    [data-theme="light"] .link{background:rgba(0,0,0,.03)}
-    .link:hover{transform: translateY(-1px); background:rgba(255,255,255,.10)}
-    [data-theme="light"] .link:hover{background:rgba(0,0,0,.06)}
-    .empty{
-      margin-top:16px;
-      padding:16px;
-      border-radius:var(--radius);
-      border:1px dashed var(--line);
-      color:var(--muted);
-      background:rgba(255,255,255,.03);
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      flex-shrink: 0;
     }
 
-    .box{
-      padding:18px;
-      border-radius:var(--radius);
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      box-shadow:var(--shadow2);
-    }
-    [data-theme="light"] .box{background:#fff}
-    .skillGrid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-      margin-top:10px;
-    }
-    .skill{
-      padding:12px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-    }
-    [data-theme="light"] .skill{background:rgba(0,0,0,.03)}
-    .skill b{display:block}
-    .skill span{color:var(--muted); font-size:12px}
-
-    .contact{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-top:10px;
+    .brand-name {
+      font-family: var(--mono);
+      letter-spacing: 1px;
     }
 
-    footer{
-      border-top:1px solid var(--line);
-      padding:24px 0;
-      color:var(--muted);
-    }
-    .foot{
-      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      align-items:center;
+    .brand-name span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    /* dialogs */
-    dialog{
-      width:min(900px, calc(100% - 24px));
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:var(--panel);
-      color:var(--text);
-      box-shadow:var(--shadow);
-      padding:0;
-    }
-    dialog::backdrop{
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(2px);
+    nav.navlinks {
+      display: flex;
+      gap: 4px;
+      align-items: center;
     }
 
-    .modal{display:flex; flex-direction:column;}
-    .modalHead{
-      padding:16px 16px 10px;
-      border-bottom:1px solid var(--line);
-      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
-    }
-    .modalHead h3{margin:0}
-
-    .modalBody{
-      padding:16px;
-      display:grid;
-      grid-template-columns: 1fr .9fr;
-      gap:14px;
-      align-items: stretch;
+    .navlinks a {
+      padding: 8px 14px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color .15s, background .15s;
     }
 
-    .modalCol{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      min-height:0;
+    .navlinks a:hover {
+      color: var(--text);
+      background: rgba(124,92,255,.12);
     }
 
-    .kv{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px;
-      background:rgba(255,255,255,.04);
-      min-height:0;
-    }
-    [data-theme="light"] .kv{background:rgba(0,0,0,.03)}
-    .kv b{display:block; margin-bottom:8px}
-    .kv ul{margin:0; padding-left:18px; color:var(--muted)}
-
-    .kvInfo{ flex:1; }
-    .kvStack{ flex:1; }
-
-    .kvImages{
-      display:flex;
-      flex-direction:column;
+    .nav-tg {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 12px;
+      background: var(--grad);
+      color: #fff !important;
+      font-size: 14px;
+      font-weight: 600;
+      transition: filter .15s, transform .15s;
+      flex-shrink: 0;
     }
 
-    .gallery{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:10px;
-    }
-    @media (max-width: 980px){ .gallery{grid-template-columns: repeat(2, 1fr);} }
-    @media (max-width: 560px){
-      .gallery{grid-template-columns: repeat(2, 1fr);} /* 2x2 = 4 */
-      .gItem img{height:110px;}
+    .nav-tg:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
     }
 
-    .gItem{
-      border-radius:14px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      cursor:pointer;
-      padding:0;
-    }
-    [data-theme="light"] .gItem{background:rgba(0,0,0,.03)}
-    .gItem img{
-      width:100%;
-      height:120px;
-      object-fit:cover;
-      display:block;
-      transition: transform .15s ease;
-    }
-    .gItem:hover img{transform: scale(1.03)}
-    .galleryEmpty{
-      color:var(--muted);
-      font-size:13px;
-      padding:10px 0 0;
+    /* ─── HERO ─── */
+    .hero {
+      padding: 80px 0 56px;
     }
 
-    .galPager{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      margin-top:12px;
-      padding-top:10px;
-      border-top:1px solid var(--line);
-      min-height:22px;
-    }
-    .galPager.isHidden{
-      visibility:hidden;
-      opacity:0;
-      pointer-events:none;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+      align-items: start;
     }
 
-    .gpDot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.08);
-      cursor:pointer;
-      padding:0;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease, opacity .12s ease;
+    .card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(8px);
     }
-    [data-theme="light"] .gpDot{background: rgba(0,0,0,.05)}
-    .gpDot:hover{transform: translateY(-1px)}
-    .gpDot[aria-current="true"]{
-      background: rgba(124,92,255,.35);
-      border-color: rgba(124,92,255,.55);
-      opacity: 1;
-    }
-    .gpDot[aria-current="false"]{opacity:.7}
 
-    /* lightbox */
-    #lightboxDialog{
-      width:min(1100px, calc(100% - 24px));
-      background: rgba(12,16,28,.78);
-      overflow:hidden;
+    .hero-main {
+      padding: 32px;
     }
-    [data-theme="light"] #lightboxDialog{
-      background: rgba(255,255,255,.90);
-    }
-    #lightboxDialog::backdrop{
-      background: rgba(0,0,0,.72);
-      backdrop-filter: blur(2px);
-    }
-    .lbTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-    }
-    .lbTitle{
-      color:var(--muted);
-      font-size:13px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .lbClose{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.08);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:14px;
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease;
-    }
-    [data-theme="light"] .lbClose{background:rgba(0,0,0,.05)}
-    .lbClose:hover{transform: translateY(-1px); background:rgba(255,255,255,.14)}
-    [data-theme="light"] .lbClose:hover{background:rgba(0,0,0,.08)}
 
-    .lbBody{
-      position:relative;
-      background:rgba(0,0,0,.20);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height: 260px;
-      padding:12px;
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
     }
-    [data-theme="light"] .lbBody{background:rgba(0,0,0,.04)}
 
-    .lbImg{
-      max-width:100%;
-      max-height: calc(85vh - 110px);
-      object-fit:contain;
-      display:block;
-      border-radius:16px;
-      border:1px solid var(--line);
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(124,92,255,.12);
+      color: #a78bfa;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--mono);
+      letter-spacing: .5px;
+    }
+
+    .badge.online::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22d3ee;
+      box-shadow: 0 0 0 2px rgba(34,211,238,.3);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 2px rgba(34,211,238,.3); }
+      50% { box-shadow: 0 0 0 4px rgba(34,211,238,.15); }
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    h1 .gradient {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 52ch;
+      margin-bottom: 28px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 12px;
+      background: var(--grad);
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      transition: filter .15s, transform .15s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-weight: 500;
+      font-size: 14px;
+      transition: background .15s, transform .15s;
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,.09);
+      transform: translateY(-2px);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 12px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item .val {
+      font-size: 26px;
+      font-weight: 700;
+      font-family: var(--mono);
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .stat-item .lbl {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* HERO SIDE */
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mini-card {
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+
+    .mini-card h3 {
+      font-size: 13px;
+      font-family: var(--mono);
+      color: #a78bfa;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .mini-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ─── SECTION ─── */
+    section { padding: 56px 0; }
+
+    .section-head {
+      margin-bottom: 24px;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7c3aed;
+      margin-bottom: 8px;
+    }
+
+    .section-head h2 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -.5px;
+      margin-bottom: 6px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 65ch;
+    }
+
+    /* ─── TOOLBAR ─── */
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      margin-bottom: 20px;
+    }
+
+    .search-wrap {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
       background: rgba(255,255,255,.04);
     }
-    [data-theme="light"] .lbImg{background: rgba(0,0,0,.03)}
 
-    .lbNav{
-      position:absolute;
-      top:50%;
-      transform: translateY(-50%);
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.08);
-      color:var(--text);
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      user-select:none;
-      transition: background .12s ease, transform .12s ease;
-    }
-    [data-theme="light"] .lbNav{background:rgba(0,0,0,.05)}
-    .lbNav:hover{background:rgba(255,255,255,.14); transform: translateY(-50%) translateY(-1px);}
-    [data-theme="light"] .lbNav:hover{background:rgba(0,0,0,.08)}
-    .lbPrev{left:12px}
-    .lbNext{right:12px}
+    .search-wrap svg { flex-shrink: 0; opacity: .5; }
 
-    @media (max-width: 980px){
-      .heroGrid{grid-template-columns:1fr}
-      .grid{grid-template Placed: repeat(2,1fr)}
-      .modalBody{grid-template-columns:1fr}
+    .search-wrap input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 14px;
     }
-    @media (max-width: 560px){
-      .navlinks{display:none}
-      .grid{grid-template-columns:1fr}
-      .heroStats{grid-template-columns:1fr}
+
+    .search-wrap input::placeholder { color: var(--dim); }
+
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .chip {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
     }
-    @media (prefers-reduced-motion: reduce){
-      *{transition:none !important; scroll-behavior:auto !important}
+
+    .chip:hover { border-color: var(--border2); color: var(--text); }
+
+    .chip[aria-pressed="true"] {
+      background: rgba(124,92,255,.18);
+      border-color: rgba(124,92,255,.5);
+      color: #c4b5fd;
+    }
+
+    .chip-count {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      color: var(--dim);
+    }
+
+    /* ─── PROJECT GRID ─── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .proj {
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 210px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .proj:hover {
+      border-color: var(--border2);
+      transform: translateY(-3px);
+    }
+
+    .proj::before {
+      content: "";
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,92,255,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .proj h3 {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -.2px;
+    }
+
+    .proj p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .meta { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .tag {
+      font-size: 11px;
+      font-family: var(--mono);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+
+    .proj-bottom {
+      margin-top: auto;
+    }
+
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background .15s, border-color .15s, transform .15s;
+    }
+
+    .open-btn:hover {
+      background: rgba(124,92,255,.18);
+      border-color: var(--border2);
+      transform: translateY(-1px);
+    }
+
+    .empty-state {
+      padding: 40px;
+      text-align: center;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ─── STACK ─── */
+    .stack-box {
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 14px;
+    }
+
+    .skill-card {
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      transition: border-color .2s;
+    }
+
+    .skill-card:hover { border-color: var(--border2); }
+
+    .skill-card .skill-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #7c3aed;
+      margin-bottom: 8px;
+    }
+
+    .skill-card .skill-val {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-box {
+      padding: 32px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .contact-left h3 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -.3px;
+      margin-bottom: 6px;
+    }
+
+    .contact-left p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .contact-tg {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 14px;
+      background: var(--grad);
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      transition: filter .15s, transform .15s;
+      flex-shrink: 0;
+    }
+
+    .contact-tg:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+    }
+
+    .foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--dim);
+    }
+
+    .foot-brand {
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .foot-brand span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .disclaimer {
+      font-size: 11px;
+      color: var(--dim);
+      max-width: 60ch;
+      text-align: right;
+    }
+
+    /* ─── DIALOG ─── */
+    dialog {
+      width: min(940px, calc(100% - 24px));
+      border: 1px solid var(--border2);
+      border-radius: 22px;
+      background: #0d0b1e;
+      color: var(--text);
+      padding: 0;
+    }
+
+    dialog::backdrop {
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(4px);
     }
 
     dialog:focus { outline: none; }
-    button:focus { outline: none; }
+
+    .modal { display: flex; flex-direction: column; }
+
+    .modal-head {
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-head h3 { font-size: 20px; font-weight: 700; letter-spacing: -.3px; }
+
+    .close-btn {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background .15s;
+    }
+
+    .close-btn:hover { background: rgba(255,255,255,.10); }
+    .close-btn:focus { outline: none; }
+
+    .modal-body {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr .85fr;
+      gap: 16px;
+    }
+
+    .modal-col { display: flex; flex-direction: column; gap: 14px; }
+
+    .kv-block {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .kv-block b {
+      display: block;
+      font-size: 11px;
+      font-family: var(--mono);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #7c3aed;
+      margin-bottom: 10px;
+    }
+
+    .kv-block ul {
+      padding-left: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .g-item {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      padding: 0;
+      background: rgba(255,255,255,.03);
+    }
+
+    .g-item img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      display: block;
+      transition: transform .2s;
+    }
+
+    .g-item:hover img { transform: scale(1.05); }
+
+    .gallery-empty { font-size: 13px; color: var(--muted); padding: 8px 0; }
+
+    .gal-pager {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .gal-pager.hidden { visibility: hidden; }
+
+    .gp-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      cursor: pointer;
+      padding: 0;
+      transition: all .15s;
+    }
+
+    .gp-dot[aria-current="true"] {
+      background: rgba(124,92,255,.5);
+      border-color: rgba(124,92,255,.7);
+      transform: scale(1.2);
+    }
+
+    /* LIGHTBOX */
+    #lightboxDialog {
+      width: min(1100px, calc(100% - 24px));
+      background: rgba(10,8,22,.92);
+    }
+
+    #lightboxDialog::backdrop {
+      background: rgba(0,0,0,.80);
+      backdrop-filter: blur(4px);
+    }
+
+    .lb-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .lb-title { font-size: 13px; color: var(--muted); font-family: var(--mono); }
+
+    .lb-body {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+      padding: 16px;
+      background: rgba(0,0,0,.3);
+    }
+
+    .lb-img {
+      max-width: 100%;
+      max-height: calc(85vh - 120px);
+      object-fit: contain;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background .15s, transform .15s;
+    }
+
+    .lb-nav:hover { background: rgba(255,255,255,.15); }
+    .lb-prev { left: 12px; }
+    .lb-prev:hover { transform: translateY(-50%) translateX(-2px); }
+    .lb-next { right: 12px; }
+    .lb-next:hover { transform: translateY(-50%) translateX(2px); }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2,1fr); }
+      .modal-body { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .navlinks { display: none; }
+      .grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .stack-grid { grid-template-columns: 1fr; }
+      .contact-box { flex-direction: column; align-items: flex-start; }
+      .disclaimer { text-align: left; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
   </style>
 </head>
 
 <body>
-<a class="skip" href="#projects">Перейти к кейсам</a>
-
 <header>
-  <div class="container nav" role="navigation" aria-label="Основная навигация">
-    <a class="brand" href="#top" aria-label="На главную">
-      <img class="logoImg" src="img/logo.png" alt="hush!k logo" />
-      <span>hush!k dev</span>
+  <div class="container nav">
+    <a class="brand" href="#top">
+      <div class="brand-logo">w</div>
+      <span class="brand-name"><span>wisp</span>.dev</span>
     </a>
 
-    <nav class="navlinks" aria-label="Разделы">
+    <nav class="navlinks">
       <a href="#projects">Кейсы</a>
       <a href="#stack">Стек</a>
       <a href="#contact">Контакты</a>
     </nav>
 
-    <div class="navactions">
-      <button class="btn" id="themeBtn" type="button" aria-label="Переключить тему">🌓</button>
-    </div>
+    <a class="nav-tg" href="https://t.me/wisp_coder">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      @wisp_coder
+    </a>
   </div>
 </header>
 
 <main id="top" class="container">
-  <section class="hero" aria-label="Приветственный блок">
-    <div class="heroGrid">
-      <div class="card heroMain">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="card hero-main fade-in">
         <div class="kicker">
-          <span class="pill">Fullstack разработчик</span>
+          <span class="badge online">доступен</span>
+          <span class="badge">full-stack dev</span>
         </div>
 
-        <h1>hush!k dev</h1>
+        <h1>Привет,<br>я <span class="gradient">wisp</span></h1>
+
         <p class="lead">
-          Привет, я кодер с огромным опытом работы (более 6 лет).<br>
-          Берусь за любые заказы (кроме лютой чернухи по РФ/РБ).<br>
-          Имею огромную репутацию на форумах и большое количество отзывов.
+          Разработчик с 6+ годами коммерческого опыта. Надоели кодеры которые пишут через нейронки и тянут сроки? Ты попал по адресу.
         </p>
 
-        <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn primary" href="#projects">🚀 Мои кейсы</a>
+        <div class="hero-cta">
+          <a class="btn-primary" href="#projects">Мои кейсы →</a>
+          <a class="btn-ghost" href="#contact">Написать</a>
         </div>
 
-        <div class="heroStats" aria-label="Ключевые цифры">
-          <div class="stat"><b>870+</b><span>Выполненных работ</span></div>
-          <div class="stat"><b>6+ лет</b><span>Опыт работы</span></div>
-          <div class="stat"><b>10:00 - 21:00</b><span>Время работы</span></div>
+        <div class="stats">
+          <div class="stat-item">
+            <span class="val">870+</span>
+            <span class="lbl">выполненных работ</span>
+          </div>
+          <div class="stat-item">
+            <span class="val">6+</span>
+            <span class="lbl">лет опыта</span>
+          </div>
+          <div class="stat-item">
+            <span class="val">10–21</span>
+            <span class="lbl">время работы</span>
+          </div>
         </div>
       </div>
 
-      <aside class="card heroSide" aria-label="Коротко обо мне">
-        <div class="mini">
-          <h3>Что делаю</h3>
-          <p>Разрабатываю абсолютно любые проекты под ваши задачи. Гарантирую поддержку на всех этапах работы.</p>
+      <div class="hero-side fade-in" style="transition-delay:.1s">
+        <div class="mini-card">
+          <h3>// что делаю</h3>
+          <p>Разрабатываю проекты любой сложности под ваши задачи. Поддержка на всех этапах работы.</p>
         </div>
-        <div class="mini">
-          <h3>Как работаю</h3>
-          <p>Работаю исключительно через популярные гарант боты такие как: лолз, континенталь, гриди, гет, форумных гарантов. Либо 30/70 если вам неудобен гарант.</p>
+        <div class="mini-card">
+          <h3>// как работаю</h3>
+          <p>Исключительно через проверенные гарант-сервисы: Lolz, Континенталь, Gridy, Get — либо форумных гарантов. Также 30/70 если гарант неудобен.</p>
         </div>
-        <div class="mini">
-          <h3>Направления работы</h3>
-          <p>Парсеры, Боты, Чекеры, Автопост, Лендинги, Фишинг, Копии сайтов, Ратники, Стиллеры, Спамеры, Брутеры, Дрейнеры, obf/crypt</p>
+        <div class="mini-card">
+          <h3>// репутация</h3>
+          <p>Огромное количество отзывов на форумах. Всегда сверяйте контакты — много фейков.</p>
         </div>
-      </aside>
-    </div>
-  </section>
-
-  <section id="projects" aria-label="Кейсы">
-    <div class="sectionHead">
-      <div>
-        <h2>Кейсы</h2>
-        <p>Все материалы в кейсах (фото и описания) сгенерированы с помощью ИИ и носят демонстрационный характер. Любые совпадения с реальными людьми, компаниями или событиями — случайны. Мы не поддерживаем и не поощряем незаконную деятельность; контент не является инструкцией к противоправным действиям.</p>
-      </div>
-    </div>
-
-    <div class="toolbar" role="region" aria-label="Панель фильтров">
-      <div class="search" role="search">
-        <span aria-hidden="true">🔎</span>
-        <input id="q" type="search" placeholder="Поиск: бот, лендинг..." autocomplete="off" />
-      </div>
-      <div class="filters" id="filters" aria-label="Категории"></div>
-    </div>
-
-    <div id="grid" class="grid" aria-live="polite"></div>
-    <div id="empty" class="empty" hidden>Ничего не найдено.</div>
-    <div id="loadError" class="empty" hidden>Не удалось загрузить кейсы. Проверь <code>projects.json</code> и запуск через сервер.</div>
-  </section>
-
-  <section id="stack" aria-label="Стек">
-    <div class="sectionHead">
-      <div>
-        <h2>Стек и навыки</h2>
-        <p>Ниже можете ознакомиться с тем, какие ЯП и фреймворки я использую</p>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="skillGrid">
-        <div class="skill"><b>Technologies</b><span>OOP, Web, Desktop, Mobile, Web3</span></div>
-        <div class="skill"><b>Languages</b><span>Python, NodeJS, C++, C#, Java, Kotlin, Swift, JS</span></div>
-        <div class="skill"><b>Databases</b><span>SQL, MongoDB, Elastic, RabbitMQ, Redis</span></div>
-        <div class="skill"><b>DevOps</b><span>Nginx, Apache, iptables, f2b, Docker, k8s, Vagrant, CI/CD</span></div>
       </div>
     </div>
   </section>
 
-  <section id="contact" aria-label="Контакты">
-    <div class="sectionHead">
-      <div>
-        <h2>Контакты</h2>
-        <p>Всегда сверяйте контакты! Много фейков.</p>
-      </div>
+  <!-- PROJECTS -->
+  <section id="projects" class="fade-in">
+    <div class="section-head">
+      <div class="section-label">// projects</div>
+      <h2>Кейсы</h2>
+      <p>Все материалы в кейсах сгенерированы с помощью ИИ и носят демонстрационный характер.</p>
     </div>
 
-    <div class="box">
-      <div class="contact">
-        <a class="btn primary" href="https://t.me/hush1k_coder">💬 Telegram</a>
-        <a class="btn" href="https://t.me/hush1k_info">👥 Channel</a>
-        <a class="btn" href="https://t.me/hush1k_rep">📣 Reputation</a>
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input id="q" type="search" placeholder="Поиск: бот, лендинг, парсер..." autocomplete="off" />
       </div>
+      <div class="filters" id="filters"></div>
+    </div>
+
+    <div id="grid" class="grid"></div>
+    <div id="empty" class="empty-state" hidden>Ничего не найдено.</div>
+    <div id="loadError" class="empty-state" hidden>Не удалось загрузить кейсы. Проверь <code>projects.json</code>.</div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" class="fade-in">
+    <div class="section-head">
+      <div class="section-label">// stack</div>
+      <h2>Стек и навыки</h2>
+      <p>Языки, фреймворки и инструменты</p>
+    </div>
+
+    <div class="stack-box">
+      <p style="font-size:15px; color:var(--muted); line-height:1.9;">
+        Python, NodeJS, C++, C#, Java, Kotlin, Swift, JS, SQL, MongoDB, Redis, Nginx, Apache, Docker, Kubernetes и многое другое
+      </p>
     </div>
   </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="fade-in">
+    <div class="section-head">
+      <div class="section-label">// contact</div>
+      <h2>Контакты</h2>
+    </div>
+
+    <div class="contact-box">
+      <div class="contact-left">
+        <h3>Готов взяться за твой проект</h3>
+        <p>Пиши в Telegram — отвечаю быстро</p>
+      </div>
+      <a class="contact-tg" href="https://t.me/wisp_coder">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+        @wisp_coder
+      </a>
+    </div>
+  </section>
+
 </main>
 
 <footer>
   <div class="container foot">
-    <span>© hush!k - зоебись кодеер))</span>
+    <span class="foot-brand"><span>wisp</span>.dev</span>
+    <span class="disclaimer">Канал носит информационный характер. Вся деятельность ведётся в рамках закона и правил Telegram. Часть контента может быть сгенерирована ИИ.</span>
   </div>
 </footer>
 
 <!-- CASE DIALOG -->
 <dialog id="caseDialog" aria-labelledby="caseTitle">
   <div class="modal">
-    <div class="modalHead">
+    <div class="modal-head">
       <div>
         <h3 id="caseTitle">Кейс</h3>
         <div class="meta" id="caseMeta"></div>
       </div>
-      <button class="btn" id="closeDialogBtn" type="button" aria-label="Закрыть">✕</button>
+      <button class="close-btn" id="closeDialogBtn" type="button" aria-label="Закрыть">✕</button>
     </div>
-
-    <div class="modalBody">
-      <div class="modalCol left">
-        <div class="kv kvDesc">
-          <b>Описание кейса</b>
+    <div class="modal-body">
+      <div class="modal-col">
+        <div class="kv-block">
+          <b>Описание</b>
           <ul id="caseDescription"></ul>
         </div>
-
-        <div class="kv kvInfo">
-          <b>Информация</b>
+        <div class="kv-block">
+          <b>Решение</b>
           <ul id="caseInfo"></ul>
         </div>
       </div>
-
-      <div class="modalCol right">
-        <div class="kv kvImages">
+      <div class="modal-col">
+        <div class="kv-block">
           <b>Изображения</b>
           <div id="caseImages" class="gallery"></div>
-          <div id="caseGalleryPager" class="galPager isHidden"></div>
+          <div id="caseGalleryPager" class="gal-pager hidden"></div>
         </div>
-
-        <div class="kv kvStack">
+        <div class="kv-block">
           <b>Стек</b>
           <div class="meta" id="caseStack"></div>
         </div>
@@ -809,449 +1080,196 @@
 
 <!-- LIGHTBOX -->
 <dialog id="lightboxDialog" aria-label="Просмотр изображений">
-  <div class="lbTop">
-    <div class="lbTitle" id="lbTitle">1 / 1</div>
-    <button class="lbClose" id="lbClose" type="button" aria-label="Закрыть">✕</button>
+  <div class="lb-top">
+    <div class="lb-title" id="lbTitle">1 / 1</div>
+    <button class="close-btn" id="lbClose" type="button" aria-label="Закрыть">✕</button>
   </div>
-
-  <div class="lbBody" id="lbBody">
-    <button class="lbNav lbPrev" id="lbPrev" type="button" aria-label="Предыдущее">‹</button>
-    <img class="lbImg" id="lbImg" alt="">
-    <button class="lbNav lbNext" id="lbNext" type="button" aria-label="Следующее">›</button>
+  <div class="lb-body" id="lbBody">
+    <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="Предыдущее">‹</button>
+    <img class="lb-img" id="lbImg" alt="">
+    <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="Следующее">›</button>
   </div>
 </dialog>
 
 <script>
-  const $ = (sel, root=document) => root.querySelector(sel);
-  const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
-
-  const escapeHtml = (str) =>
-    String(str)
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+  const esc = s => String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
 
   function normalizeImages(images){
-    if (!images || !Array.isArray(images) || images.length === 0) return [];
-    return images.map(img => {
-      if (typeof img === "string") return { src: img, alt: "Изображение кейса" };
-      return { src: img?.src, alt: img?.alt || "Изображение кейса" };
-    }).filter(x => x && x.src);
+    if(!images||!Array.isArray(images)||!images.length) return [];
+    return images.map(img=>typeof img==="string"?{src:img,alt:"Изображение"}:{src:img?.src,alt:img?.alt||"Изображение"}).filter(x=>x?.src);
   }
 
-  let projects = [];
-  let categoryMap = {};
+  let projects=[], categoryMap={};
 
   async function loadProjects(){
     try{
-      const res = await fetch("projects.json", { cache: "no-store" });
-      if (!res.ok) throw new Error("HTTP " + res.status);
+      const res = await fetch("projects.json",{cache:"no-store"});
+      if(!res.ok) throw new Error("HTTP "+res.status);
       const data = await res.json();
-
-      if (!data || typeof data !== "object") throw new Error("projects.json должен быть объектом");
-      if (!Array.isArray(data.projects)) throw new Error("projects.json: поле projects должно быть массивом");
-      if (data.categories && typeof data.categories !== "object") throw new Error("projects.json: categories должен быть объектом");
-
+      if(!Array.isArray(data.projects)) throw new Error("invalid");
       projects = data.projects;
-      categoryMap = data.categories || {};
-
-      for (const p of projects){
-        const k = String(p?.category || "");
-        if (k && !categoryMap[k]) categoryMap[k] = k;
-      }
-
-      $("#loadError").hidden = true;
+      categoryMap = data.categories||{};
+      for(const p of projects){ const k=String(p?.category||""); if(k&&!categoryMap[k]) categoryMap[k]=k; }
+      $("#loadError").hidden=true;
       render();
-    }catch(err){
-      console.error("Failed to load projects.json:", err);
-      projects = [];
-      categoryMap = {};
-      $("#grid").innerHTML = "";
-      $("#empty").hidden = true;
-      $("#loadError").hidden = false;
+    }catch(e){
+      console.error(e);
+      projects=[]; categoryMap={};
+      $("#grid").innerHTML="";
+      $("#empty").hidden=true;
+      $("#loadError").hidden=false;
     }
   }
 
-  const state = { q: "", cat: "all", filtered: [] };
+  const state={q:"",cat:"all",filtered:[]};
+  const label = cat => categoryMap[cat]||cat;
 
-  function labelForCategory(cat){
-    return categoryMap[cat] || cat;
+  function matchQ(p,q){
+    if(!q) return true;
+    return [p.title,p.summary,p.category,...(p.stack||[]),...(p.description||[]),...(p.solution||[])].join(" ").toLowerCase().includes(q);
   }
 
-  function matchesQuery(p, qLower){
-    if (!qLower) return true;
-    const hay = [
-      p.title, p.summary, p.category,
-      ...(p.stack || []),
-      ...(p.description || []),
-      ...(p.solution || [])
-    ].join(" ").toLowerCase();
-    return hay.includes(qLower);
-  }
+  function getCats(){ return [...new Set(projects.filter(p=>p?.category).map(p=>String(p.category)))].sort((a,b)=>label(a).localeCompare(label(b),"ru")); }
 
-  function getAllCategories(){
-    const set = new Set();
-    for (const p of projects){
-      if (p?.category) set.add(String(p.category));
-    }
-    return [...set].sort((a,b) => labelForCategory(a).localeCompare(labelForCategory(b), "ru"));
-  }
-
-  function buildCategoryCountsByQuery(){
-    const qLower = state.q.trim().toLowerCase();
-    const counts = Object.create(null);
-    let total = 0;
-
-    for (const p of projects){
-      if (!p?.category) continue;
-      if (!matchesQuery(p, qLower)) continue;
+  function countsByQ(){
+    const q=state.q.trim().toLowerCase(), counts={};
+    let total=0;
+    for(const p of projects){
+      if(!p?.category||!matchQ(p,q)) continue;
       total++;
-      const c = String(p.category);
-      counts[c] = (counts[c] || 0) + 1;
+      const c=String(p.category);
+      counts[c]=(counts[c]||0)+1;
     }
-    return { counts, total };
+    return{counts,total};
   }
-
-  const filtersRoot = $("#filters");
 
   function renderFilters(){
-    const cats = getAllCategories();
-    const { counts, total } = buildCategoryCountsByQuery();
-
-    if (state.cat !== "all" && !cats.includes(state.cat)) state.cat = "all";
-
-    const btnAll = `
-      <button class="chipBtn" type="button" data-cat="all" aria-pressed="${state.cat === "all"}">
-        Все <span class="chipCount">${total}</span>
-      </button>
-    `;
-
-    const btns = cats.map(cat => {
-      const cnt = counts[cat] || 0;
-      return `
-        <button class="chipBtn" type="button" data-cat="${escapeHtml(cat)}" aria-pressed="${state.cat === cat}">
-          ${escapeHtml(labelForCategory(cat))} <span class="chipCount">${cnt}</span>
-        </button>
-      `;
-    }).join("");
-
-    filtersRoot.innerHTML = btnAll + btns;
-
-    $$(".chipBtn", filtersRoot).forEach(btn => {
-      btn.addEventListener("click", () => {
-        $$(".chipBtn", filtersRoot).forEach(b => b.setAttribute("aria-pressed", "false"));
-        btn.setAttribute("aria-pressed", "true");
-        state.cat = btn.dataset.cat;
-        renderGridOnly();
+    const cats=getCats(), {counts,total}=countsByQ();
+    if(state.cat!=="all"&&!cats.includes(state.cat)) state.cat="all";
+    const allBtn=`<button class="chip" type="button" data-cat="all" aria-pressed="${state.cat==="all"}">Все <span class="chip-count">${total}</span></button>`;
+    const btns=cats.map(c=>`<button class="chip" type="button" data-cat="${esc(c)}" aria-pressed="${state.cat===c}">${esc(label(c))} <span class="chip-count">${counts[c]||0}</span></button>`).join("");
+    $("#filters").innerHTML=allBtn+btns;
+    $$(".chip","#filters").forEach(b=>{
+      b.addEventListener("click",()=>{
+        $$(".chip").forEach(x=>x.setAttribute("aria-pressed","false"));
+        b.setAttribute("aria-pressed","true");
+        state.cat=b.dataset.cat;
+        renderGrid();
       });
     });
   }
 
-  const grid = $("#grid");
-  const empty = $("#empty");
-
-  function projectCard(p, index){
-    const tags = [
-      `<span class="tag">${escapeHtml(labelForCategory(p.category))}</span>`,
-      ...(p.stack || []).slice(0,2).map(s => `<span class="tag">${escapeHtml(s)}</span>`)
-    ].join("");
-
-    return `
-      <article class="proj" aria-label="Кейс: ${escapeHtml(p.title)}">
-        <div class="projTop">
-          <div>
-            <h3>${escapeHtml(p.title)}</h3>
-            <p>${escapeHtml(p.summary || "")}</p>
-            <div class="meta" aria-label="Теги">${tags}</div>
+  function renderGrid(){
+    const q=state.q.trim().toLowerCase();
+    let items=projects.slice();
+    if(state.cat!=="all") items=items.filter(p=>p.category===state.cat);
+    if(q) items=items.filter(p=>matchQ(p,q));
+    state.filtered=items;
+    $("#grid").innerHTML=items.map((p,i)=>`
+      <article class="proj">
+        <div>
+          <h3>${esc(p.title)}</h3>
+          <p>${esc(p.summary||"")}</p>
+          <div class="meta" style="margin-top:8px">
+            <span class="tag">${esc(label(p.category))}</span>
+            ${(p.stack||[]).slice(0,2).map(s=>`<span class="tag">${esc(s)}</span>`).join("")}
           </div>
         </div>
-        <div class="projBottom">
-          <div class="links">
-            <button class="link" type="button" data-open="${index}">📌 Ознакомиться</button>
-          </div>
+        <div class="proj-bottom">
+          <button class="open-btn" type="button" data-open="${i}">Открыть →</button>
         </div>
       </article>
-    `;
-  }
-
-  function applyFilters(){
-    const qLower = state.q.trim().toLowerCase();
-    let items = projects.slice();
-
-    if (state.cat !== "all") items = items.filter(p => p.category === state.cat);
-    if (qLower) items = items.filter(p => matchesQuery(p, qLower));
-
-    state.filtered = items;
-  }
-
-  function renderGridOnly(){
-    applyFilters();
-    const items = state.filtered;
-
-    grid.innerHTML = items.map((p, idx) => projectCard(p, idx)).join("");
-    empty.hidden = items.length > 0;
-
-    $$("[data-open]", grid).forEach(btn => {
-      btn.addEventListener("click", () => openCase(Number(btn.dataset.open)));
-    });
-  }
-
-  function render(){
-    renderFilters();
-    renderGridOnly();
-  }
-
-  // ===== Case modal & gallery pagination =====
-  const caseDlg = $("#caseDialog");
-  const caseImagesHolder = $("#caseImages");
-  const pager = $("#caseGalleryPager");
-
-  const DESKTOP_PER_PAGE = 3;
-  const MOBILE_PER_PAGE = 4;
-  
-  function getGalleryPerPage(){
-    return window.matchMedia("(max-width: 560px)").matches ? MOBILE_PER_PAGE : DESKTOP_PER_PAGE;
-  }
-  
-  let GALLERY_PER_PAGE = getGalleryPerPage();
-
-  let galleryAll = [];
-  let galleryPage = 0;
-  let galleryCaseTitle = "Кейс";
-
-  function galleryTotalPages(){
-    return Math.max(1, Math.ceil(galleryAll.length / GALLERY_PER_PAGE));
-  }
-
-  function renderDots(){
-    const pages = galleryTotalPages();
-
-    if (pages <= 1){
-      pager.classList.add("isHidden");
-      pager.innerHTML = "";
-      return;
-    }
-
-    pager.classList.remove("isHidden");
-    pager.innerHTML = Array.from({length: pages}).map((_, i) => `
-      <button
-        class="gpDot"
-        type="button"
-        aria-label="Страница ${i + 1}"
-        aria-current="${i === galleryPage}"
-        data-page="${i}"
-      ></button>
     `).join("");
-
-    $$("[data-page]", pager).forEach(btn => {
-      btn.addEventListener("click", () => {
-        galleryPage = Number(btn.dataset.page);
-        renderGalleryPage();
-      });
-    });
+    $("#empty").hidden=items.length>0;
+    $$("[data-open]","#grid").forEach(b=>b.addEventListener("click",()=>openCase(+b.dataset.open)));
   }
 
-  function renderGalleryPage(){
-    const total = galleryAll.length;
+  function render(){ renderFilters(); renderGrid(); }
 
-    if (total === 0){
-      caseImagesHolder.innerHTML = `<div class="galleryEmpty">Нет изображений.</div>`;
-      pager.classList.add("isHidden");
-      pager.innerHTML = "";
+  // CASE MODAL
+  const caseDlg=$("#caseDialog");
+  let galleryAll=[],galleryPage=0,galTitle="";
+  const PER=3;
+
+  function renderGallery(){
+    const total=galleryAll.length;
+    if(!total){
+      $("#caseImages").innerHTML=`<div class="gallery-empty">Нет изображений.</div>`;
+      $("#caseGalleryPager").classList.add("hidden");
       return;
     }
-
-    const pages = galleryTotalPages();
-    galleryPage = Math.min(Math.max(0, galleryPage), pages - 1);
-
-    const start = galleryPage * GALLERY_PER_PAGE;
-    const end = start + GALLERY_PER_PAGE;
-    const slice = galleryAll.slice(start, end);
-
-    caseImagesHolder.innerHTML = slice.map((i, localIdx) => {
-      const globalIdx = start + localIdx;
-      return `
-        <button class="gItem" type="button" data-img-index="${globalIdx}" aria-label="${escapeHtml(i.alt)}">
-          <img src="${escapeHtml(i.src)}" alt="${escapeHtml(i.alt)}" loading="lazy">
-        </button>
-      `;
-    }).join("");
-
-    $$("[data-img-index]", caseImagesHolder).forEach(btn => {
-      btn.addEventListener("click", () => {
-        const startIndex = Number(btn.dataset.imgIndex);
-        openLightbox(galleryAll, startIndex, galleryCaseTitle);
-      });
-    });
-
-    renderDots();
-    $$("[data-page]", pager).forEach(dot => {
-      dot.setAttribute("aria-current", String(Number(dot.dataset.page) === galleryPage));
-    });
+    const pages=Math.ceil(total/PER);
+    galleryPage=Math.min(Math.max(0,galleryPage),pages-1);
+    const slice=galleryAll.slice(galleryPage*PER,galleryPage*PER+PER);
+    $("#caseImages").innerHTML=slice.map((img,li)=>`
+      <button class="g-item" type="button" data-idx="${galleryPage*PER+li}">
+        <img src="${esc(img.src)}" alt="${esc(img.alt)}" loading="lazy">
+      </button>
+    `).join("");
+    $$("[data-idx]","#caseImages").forEach(b=>b.addEventListener("click",()=>openLightbox(galleryAll,+b.dataset.idx,galTitle)));
+    const pager=$("#caseGalleryPager");
+    if(pages<=1){ pager.classList.add("hidden"); pager.innerHTML=""; return; }
+    pager.classList.remove("hidden");
+    pager.innerHTML=Array.from({length:pages},(_,i)=>`<button class="gp-dot" type="button" data-page="${i}" aria-current="${i===galleryPage}"></button>`).join("");
+    $$("[data-page]","#caseGalleryPager").forEach(b=>b.addEventListener("click",()=>{ galleryPage=+b.dataset.page; renderGallery(); }));
   }
 
-  function onGalleryLayoutChange(){
-    const next = getGalleryPerPage();
-    if (next === GALLERY_PER_PAGE) return;
-
-    const firstIndex = galleryPage * GALLERY_PER_PAGE;
-    GALLERY_PER_PAGE = next;
-
-    galleryPage = Math.floor(firstIndex / GALLERY_PER_PAGE);
-    renderGalleryPage();
-  }
-
-  window.addEventListener("resize", () => {
-    if (!caseDlg.open) return;
-    onGalleryLayoutChange();
-  });
-
-  function openCase(index){
-    const p = state.filtered[index];
-    if (!p) return;
-
-    $("#caseTitle").textContent = p.title || "Кейс";
-    $("#caseMeta").innerHTML = `<span class="tag">Категория: ${escapeHtml(labelForCategory(p.category))}</span>`;
-
-    $("#caseDescription").innerHTML = (p.description || []).map(x => `<li>${escapeHtml(x)}</li>`).join("");
-    $("#caseInfo").innerHTML = (p.solution || []).map(x => `<li>${escapeHtml(x)}</li>`).join("");
-    $("#caseStack").innerHTML = (p.stack || []).map(s => `<span class="tag">${escapeHtml(s)}</span>`).join("");
-
-    galleryAll = normalizeImages(p.images);
-    galleryPage = 0;
-    galleryCaseTitle = p.title || "Кейс";
-
-    GALLERY_PER_PAGE = getGalleryPerPage();
-    renderGalleryPage();
-
+  function openCase(i){
+    const p=state.filtered[i]; if(!p) return;
+    $("#caseTitle").textContent=p.title||"Кейс";
+    $("#caseMeta").innerHTML=`<span class="tag">${esc(label(p.category))}</span>`;
+    $("#caseDescription").innerHTML=(p.description||[]).map(x=>`<li>${esc(x)}</li>`).join("");
+    $("#caseInfo").innerHTML=(p.solution||[]).map(x=>`<li>${esc(x)}</li>`).join("");
+    $("#caseStack").innerHTML=(p.stack||[]).map(s=>`<span class="tag">${esc(s)}</span>`).join("");
+    galleryAll=normalizeImages(p.images); galleryPage=0; galTitle=p.title||"Кейс";
+    renderGallery();
     caseDlg.showModal();
     $("#closeDialogBtn").focus();
   }
 
-  function closeCase(){ caseDlg.close(); }
-  $("#closeDialogBtn").addEventListener("click", closeCase);
+  $("#closeDialogBtn").addEventListener("click",()=>caseDlg.close());
+  caseDlg.addEventListener("click",e=>{ const r=caseDlg.getBoundingClientRect(); if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom) caseDlg.close(); });
 
-  caseDlg.addEventListener("click", (e) => {
-    const rect = caseDlg.getBoundingClientRect();
-    const inDialog = (
-      e.clientX >= rect.left && e.clientX <= rect.right &&
-      e.clientY >= rect.top  && e.clientY <= rect.bottom
-    );
-    if (!inDialog) closeCase();
-  });
+  // LIGHTBOX
+  const lbDlg=$("#lightboxDialog");
+  let lbImgs=[],lbIdx=0,lbCase="";
 
-  // ===== Lightbox =====
-  const lbDlg = $("#lightboxDialog");
-  const lbImg = $("#lbImg");
-  const lbTitle = $("#lbTitle");
-  const lbClose = $("#lbClose");
-  const lbPrev = $("#lbPrev");
-  const lbNext = $("#lbNext");
-  const lbBody = $("#lbBody");
-
-  let lbImages = [];
-  let lbIndex = 0;
-  let lbCaseTitle = "Кейс";
-
-  function setLb(index){
-    const total = lbImages.length;
-    if (!total) return;
-
-    lbIndex = (index + total) % total;
-    const it = lbImages[lbIndex];
-
-    lbImg.src = it.src;
-    lbImg.alt = it.alt || "Изображение";
-    lbTitle.textContent = `${lbCaseTitle} — ${lbIndex + 1} / ${total}`;
-
-    const showNav = total > 1;
-    lbPrev.style.display = showNav ? "" : "none";
-    lbNext.style.display = showNav ? "" : "none";
+  function setLb(i){
+    const n=lbImgs.length; if(!n) return;
+    lbIdx=(i+n)%n;
+    const it=lbImgs[lbIdx];
+    $("#lbImg").src=it.src; $("#lbImg").alt=it.alt||"";
+    $("#lbTitle").textContent=`${lbCase} — ${lbIdx+1} / ${n}`;
+    const show=n>1;
+    $("#lbPrev").style.display=show?"":"none";
+    $("#lbNext").style.display=show?"":"none";
   }
 
-  function openLightbox(images, startIndex, caseTitle){
-    lbImages = images.slice();
-    lbIndex = startIndex || 0;
-    lbCaseTitle = caseTitle || "Кейс";
-    setLb(lbIndex);
-    lbDlg.showModal();
-    lbClose.focus();
+  function openLightbox(imgs,i,title){
+    lbImgs=imgs.slice(); lbIdx=i||0; lbCase=title||"";
+    setLb(lbIdx); lbDlg.showModal(); $("#lbClose").focus();
   }
 
-  function closeLightbox(){
-    lbDlg.close();
-    lbImages = [];
-    const closeBtn = document.querySelector("#closeDialogBtn");
-    if (closeBtn) closeBtn.focus();
-  }
+  function closeLightbox(){ lbDlg.close(); lbImgs=[]; }
 
-  lbClose.addEventListener("click", closeLightbox);
-  lbPrev.addEventListener("click", () => setLb(lbIndex - 1));
-  lbNext.addEventListener("click", () => setLb(lbIndex + 1));
+  $("#lbClose").addEventListener("click",closeLightbox);
+  $("#lbPrev").addEventListener("click",()=>setLb(lbIdx-1));
+  $("#lbNext").addEventListener("click",()=>setLb(lbIdx+1));
+  lbDlg.addEventListener("click",e=>{ const r=lbDlg.getBoundingClientRect(); if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom) closeLightbox(); });
 
-  lbDlg.addEventListener("click", (e) => {
-    const rect = lbDlg.getBoundingClientRect();
-    const inDialog = (
-      e.clientX >= rect.left && e.clientX <= rect.right &&
-      e.clientY >= rect.top  && e.clientY <= rect.bottom
-    );
-    if (!inDialog) closeLightbox();
+  document.addEventListener("keydown",e=>{
+    if(lbDlg.open){ if(e.key==="Escape") closeLightbox(); else if(e.key==="ArrowLeft") setLb(lbIdx-1); else if(e.key==="ArrowRight") setLb(lbIdx+1); return; }
+    if(caseDlg.open&&e.key==="Escape") caseDlg.close();
   });
 
-  (function attachSwipe(){
-    let startX = 0, startY = 0, touching = false;
+  // SEARCH
+  $("#q").addEventListener("input",e=>{ state.q=e.target.value; render(); });
 
-    lbBody.addEventListener("touchstart", (e) => {
-      const t = e.touches[0];
-      startX = t.clientX;
-      startY = t.clientY;
-      touching = true;
-    }, {passive:true});
-
-    lbBody.addEventListener("touchend", (e) => {
-      if (!touching || lbImages.length < 2) return;
-      touching = false;
-
-      const t = e.changedTouches[0];
-      const dx = t.clientX - startX;
-      const dy = t.clientY - startY;
-
-      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)){
-        if (dx < 0) setLb(lbIndex + 1);
-        else setLb(lbIndex - 1);
-      }
-    }, {passive:true});
-  })();
-
-  document.addEventListener("keydown", (e) => {
-    if (lbDlg.open){
-      if (e.key === "Escape") return closeLightbox();
-      if (e.key === "ArrowLeft") return setLb(lbIndex - 1);
-      if (e.key === "ArrowRight") return setLb(lbIndex + 1);
-      return;
-    }
-    if (caseDlg.open && e.key === "Escape") closeCase();
-  });
-
-  // search
-  $("#q").addEventListener("input", (e) => {
-    state.q = e.target.value;
-    render();
-  });
-
-  // theme
-  const themeBtn = $("#themeBtn");
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
-
-  themeBtn.addEventListener("click", () => {
-    const cur = document.documentElement.getAttribute("data-theme") || "dark";
-    const next = (cur === "dark") ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-  });
+  // FADE IN
+  const observer=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("visible"); }); },{threshold:.1});
+  $$(".fade-in").forEach(el=>observer.observe(el));
 
   loadProjects();
 </script>
