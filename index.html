@@ -334,6 +334,13 @@
       width: min(940px, calc(100% - 24px));
       border: 1px solid var(--border2); border-radius: 22px;
       background: #0d0b1e; color: var(--text); padding: 0;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      max-height: 90vh;
+      overflow-y: auto;
     }
     dialog::backdrop { background: rgba(0,0,0,.65); backdrop-filter: blur(4px); }
     dialog:focus { outline: none; }
@@ -393,7 +400,17 @@
     }
     .gp-dot[aria-current="true"] { background: rgba(124,92,255,.5); border-color: rgba(124,92,255,.7); transform: scale(1.2); }
 
-    #lightboxDialog { width: min(1100px, calc(100% - 24px)); background: rgba(10,8,22,.92); }
+    #lightboxDialog {
+      width: min(1100px, calc(100% - 24px));
+      background: rgba(10,8,22,.92);
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      max-height: 95vh;
+      overflow-y: auto;
+    }
     #lightboxDialog::backdrop { background: rgba(0,0,0,.80); backdrop-filter: blur(4px); }
 
     .lb-top {
@@ -472,7 +489,10 @@
       <a href="#stack">Стек</a>
       <a href="#contact">Контакты</a>
     </nav>
-    
+    <a class="nav-tg" href="https://t.me/wisp_coder">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      @wisp_coder
+    </a>
   </div>
 </header>
 
@@ -482,6 +502,7 @@
     <div class="hero-grid">
       <div class="card hero-main fade-in">
         <div class="kicker">
+          <span class="badge online">доступен</span>
           <span class="badge">full-stack dev</span>
         </div>
         <h1>Привет,<br>я <span class="gradient">wisp</span></h1>
